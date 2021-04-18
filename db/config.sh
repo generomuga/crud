@@ -29,7 +29,8 @@ echo "SELECT 'CREATE DATABASE $db_name OWNER $db_user' WHERE NOT EXISTS (SELECT 
 echo "Starting liquibase migration..."
 cd build/liquibase
 export PATH=$PATH:$PWD
-echo liquibase --username=$db_user --password=$db_pass --url=jdbc:postgresql://localhost:5432/$db_name --driver=org.postgresql.Driver --classpath="bin/drivers/$pg_driver" --changeLogFile=changelogs/db-changelog-master.xml --contexts=$lq_contexts --labels=$lq_labels update;
-liquibase --username=$db_user --password=$db_pass --url=jdbc:postgresql://localhost:5432/$db_name --driver=org.postgresql.Driver --classpath="bin/drivers/$pg_driver" --changeLogFile=changelogs/db-changelog-master.xml --contexts=$lq_contexts --labels=$lq_labels update;
+#echo liquibase --username=$db_user --password=$db_pass --url=jdbc:postgresql://localhost:5432/$db_name --driver=org.postgresql.Driver --classpath="bin/drivers/$pg_driver" --changeLogFile=changelogs/db.changelog-master.xml --contexts=$lq_contexts --labels=$lq_labels liquibase.hub.mode=off update;
+#liquibase --username=$db_user --password=$db_pass --url=jdbc:postgresql://localhost:5432/$db_name --driver=org.postgresql.Driver --classpath="bin/drivers/$pg_driver" --changeLogFile=changelogs/db.changelog-master.xml --contexts=$lq_contexts --labels=$lq_labels --liquibase.hub.mode=off update;
+liquibase --defaultsFile=liquibase-template.properties update
 
 /bin/bash
