@@ -57,9 +57,9 @@ RUN usermod -aG crudgrp postgres
 ENV postgres_local_auth_method=trust
 ENV postgres_host_auth_method=trust
 ENV postgres_listen_address=*
-ENV db_user=ebsuser
-ENV db_pass=3nt3rpr1SE!
-ENV db_name=b4rebsfixturedb
+ENV db_user=admin
+ENV db_pass=@dm1n123
+ENV db_name=cruddb
 ENV pg_driver=postgresql-42.2.10.jar
 ENV lq_contexts=schema,template,fixture
 ENV lq_labels=clean,develop
