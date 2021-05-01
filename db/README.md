@@ -2,6 +2,9 @@
 ## Build an image
 docker build --force-rm=true -t crud-db .
 
+### Or just simply pull the docker image 
+docker pull generomuga/crud:dev
+
 ## Run a container
 docker run -dit --rm --name crud-db -p 5432:5432 crud-db
 
