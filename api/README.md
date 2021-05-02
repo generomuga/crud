@@ -14,7 +14,7 @@ docker pull generomuga/crud-api:dev
 docker run -dit --rm --name crud-api -p 3000:3000 crud-api 
 ```
 
-OR
+or
 
 ```
 docker run -dit --rm --name crud-api -p 3000:3000 generomuga/crud-api:dev
