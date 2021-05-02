@@ -48,3 +48,15 @@ app.post('/todos', async(req, res) => {
         console.error(error.message)
     }
 });
+
+app.delete('/todos/:id', async(req, res) => {
+    const { id } = req.params;
+    try {
+        const removeTodo = await pool.query(
+            "DELETE FROM master.todo WHERE id=$1 RETURNING *", [id]
+        );
+        res.json(removeTodo.rows[0]);
+    } catch (error) {
+        console.error(error.message)
+    }
+});
