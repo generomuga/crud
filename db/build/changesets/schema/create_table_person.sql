@@ -8,7 +8,7 @@
 CREATE SCHEMA master;
 
 CREATE TABLE master.todo (
-    id integer, 
+    id serial, 
     task varchar(100),
     comment varchar(100)
 );
