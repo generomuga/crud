@@ -36,3 +36,15 @@ app.get('/todos/:id', async(req, res) => {
         console.error(error.message)
     }
 });
+
+app.post('/todos', async(req, res) => {
+    const { id, task, comment } = req.body;
+    try {
+        const newTodo = await pool.query(
+            "INSERT INTO master.todo (id,task,comment) VALUES ($1,$2,$3) RETURNING *",[id,task,comment]
+        );
+        res.json(newTodo);
+    } catch (error) {
+        console.error(error.message)
+    }
+});
