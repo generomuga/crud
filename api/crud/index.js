@@ -60,3 +60,16 @@ app.delete('/todos/:id', async(req, res) => {
         console.error(error.message)
     }
 });
+
+app.put('/todos/:id', async(req, res) => {
+    const { id } = req.params;
+    const { task, comment } = req.body;
+    try {
+        const updateTodo = await pool.query(
+            "UPDATE master.todo SET task=$2, comment=$3 WHERE id=$1 RETURNING *",[id,task,comment]
+        );
+        res.json(updateTodo);
+    } catch (error) {
+        console.error(error.message)
+    }
+});
