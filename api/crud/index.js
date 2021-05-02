@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const pool = require("./db");
+const pool = require("./config/db");
+// const pool = require('./config/knex');
 
 const port = 3000;
 
