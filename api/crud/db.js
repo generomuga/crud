@@ -4,7 +4,7 @@ const pool = new Pool({
     user: "postgres",
     password: "postgres",
     database: "cruddb",
-    host: "localhost",
+    host: "host.docker.internal",
     port: 5432
 });
 
