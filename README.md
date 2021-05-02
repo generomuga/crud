@@ -1,6 +1,6 @@
 # crud
 
-Just a simple CRUD Todo API made using Express that is being deployed into a docker container. It also uses Liquibase to manage the database migration part. 
+Just a simple CRUD Todo API made using Express that is being deployed into docker containers. It also uses Liquibase to manage the database migration part. 
 
 ### Run the whole infrastructure by just simply running this code
 ```
