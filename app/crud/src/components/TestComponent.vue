@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+
       <form @submit.prevent="addTodo">
             <h1>{{ msg }}</h1>
             <div>
@@ -15,7 +16,32 @@
             <div>
                 <button>Yeah! just add a new task</button>
             </div>
+
+            <!-- <div>
+                <h5 v-if="savingSuccessful">Saved successfully</h5>
+            </div> -->
+
       </form>
+      
+      <div>
+            <div>
+                <br><br>
+                Hey! This is my TODOs
+            </div>
+            
+            <div>  
+                <!-- <button @click="getTodo">Refresh it to see my life</button> -->
+                <div v-for="todo in todos" :key="todo.id">
+                    {{todo.id}} - {{todo.task}} - {{todo.comment}}
+                </div>
+            </div>
+
+            <div>
+                <h3 v-if="errorMsg">{{errorMsg}}</h3>
+            </div>
+            
+      </div>
+      
   </div>
 </template>
 
@@ -29,21 +55,44 @@ export default {
     task_header: String,
     comment_header: String
   },
+  created() {
+      this.getTodo()
+  },
   data() {
       return {
           formData: {
               id: '',
               task: '',
-              comment: ''
-          }
+              comment: '',
+              
+          },
+          todos: [],
+          errorMsg: '',
+          savingSuccessful: false
       }
   },
   methods: {
       addTodo() {
         axios
             .post('http://localhost:3000/todos', this.formData)
-            .then(response => console.log(response))
+            .then((response) => {
+                console.log(response)
+                this.savingSuccessful = true
+                this.getTodo()
+            })
             .catch(error => console.log(error))
+      },
+      getTodo(){
+          axios
+            .get('http://localhost:3000/todos')
+            .then((response) => {
+                console.log(response)
+                this.todos = response.data
+            })
+            .catch((error) => {
+                console.log(error)
+                this.errorMsg = 'Error on retrieving data'
+            })
       }
   }
 }
