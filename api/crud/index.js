@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
 const pool = require("./config/db");
-// const pool = require('./config/knex');
+const cors = require('cors');
 
 const port = 3000;
 
 app.use(express.json());
+// Remove this in the production
+app.use(cors());
 
 app.listen(port, ()=> {
     console.log(`App running on port ${port}`)
