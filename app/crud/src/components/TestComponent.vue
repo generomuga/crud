@@ -6,13 +6,21 @@
             <h1>{{ msg }}</h1>
             
             <div>
-                <div>{{ task_header }}</div>
-                <input type="text" id="task" v-model="formData.task" />
+                <div>
+                    {{ task_header }}
+                </div>
+                <div>
+                    <input type="text" id="task" v-model="formData.task" />
+                </div>
             </div>
             
             <div>
-                <div>{{ comment_header }}</div>
-                <textarea id="comment" name="comment" rows="4" cols="22" v-model="formData.comment"/>
+                <div>
+                    {{ comment_header }}
+                </div>
+                <div>
+                    <textarea id="comment" name="comment" rows="4" cols="22" v-model="formData.comment"/>
+                </div>
             </div>
 
             <div>
@@ -22,20 +30,30 @@
         </form>
 
         <div>
+
             <div>
                 <br><br>
                 Hey! This is my TODOs
                 <br><br>
             </div>
-            
-            <div>  
-                <div>
-                    ID - TASK - COMMENT
-                </div>
 
-                <div v-for="todo in todos" :key="todo.id">
-                    {{todo.id}} - {{todo.task}} - {{todo.comment}} - <button @click="deleteTodo(todo.id)">Remove this I'm lazy today</button> 
-                </div>
+            <div>
+
+                <table style="margin-left:auto; margin-right:auto">
+                    <tr>
+                        <th style="width:100px">ID</th>
+                        <th style="width:100px">TASK</th>
+                        <th style="width:100px">COMMENT</th>
+                        <th style="width:100px">ACTION</th>
+                    </tr>
+                    <tr v-for="todo in todos" :key="todo.id">
+                        <td>{{todo.id}}</td>
+                        <td>{{todo.task}}</td>
+                        <td>{{todo.comment}}</td>
+                        <td><button @click="deleteTodo(todo.id)">Remove this I'm lazy today</button></td>
+                    </tr>
+                </table>
+
             </div>
 
             <div>
