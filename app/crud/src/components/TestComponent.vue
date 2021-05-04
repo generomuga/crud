@@ -4,8 +4,6 @@
         <form @submit.prevent="addTodo">
             
             <h1>{{ app_title }}</h1>
-
-            <div v-if="errorMsg">{{errorMsg}}</div>
             
             <div>
                 <div>
