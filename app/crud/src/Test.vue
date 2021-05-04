@@ -1,5 +1,5 @@
 <template>
-  <TestComponent msg="Simple TODO Application" task_header="Task" comment_header="Comment" />
+  <TestComponent app_title="Simple TODO Application" task_header="Task" comment_header="Comment" />
 </template>
 
 <script>
@@ -14,6 +14,7 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
