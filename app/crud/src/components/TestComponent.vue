@@ -1,8 +1,10 @@
 <template>
-  <div class="hello">
+    <div class="hello">
 
-      <form @submit.prevent="addTodo">
+        <form @submit.prevent="addTodo">
+            
             <h1>{{ msg }}</h1>
+            
             <div>
                 <div>{{ task_header }}</div>
                 <input type="text" id="task" v-model="formData.task" />
@@ -10,29 +12,29 @@
             
             <div>
                 <div>{{ comment_header }}</div>
-                <textarea id="comment" name="comment" rows="4" cols="20" v-model="formData.comment"/>
+                <textarea id="comment" name="comment" rows="4" cols="22" v-model="formData.comment"/>
             </div>
 
             <div>
                 <button>Yeah! just add a new task</button>
             </div>
+    
+        </form>
 
-            <!-- <div>
-                <h5 v-if="savingSuccessful">Saved successfully</h5>
-            </div> -->
-
-      </form>
-      
-      <div>
+        <div>
             <div>
                 <br><br>
                 Hey! This is my TODOs
+                <br><br>
             </div>
             
             <div>  
-                <!-- <button @click="getTodo">Refresh it to see my life</button> -->
+                <div>
+                    ID - TASK - COMMENT
+                </div>
+
                 <div v-for="todo in todos" :key="todo.id">
-                    {{todo.id}} - {{todo.task}} - {{todo.comment}}
+                    {{todo.id}} - {{todo.task}} - {{todo.comment}} - <button @click="deleteTodo(todo.id)">Remove this I'm lazy today</button> 
                 </div>
             </div>
 
@@ -40,9 +42,10 @@
                 <h3 v-if="errorMsg">{{errorMsg}}</h3>
             </div>
             
-      </div>
-      
-  </div>
+        </div>
+
+    </div>
+    
 </template>
 
 <script>
@@ -88,6 +91,20 @@ export default {
             .then((response) => {
                 console.log(response)
                 this.todos = response.data
+            })
+            .catch((error) => {
+                console.log(error)
+                this.errorMsg = 'Error on retrieving data'
+            })
+      },
+      deleteTodo(todoId){
+          axios
+            .delete('http://localhost:3000/todos/'+todoId)
+            .then((response) => {
+                console.log(response)
+                // this.todos = response.data
+                this.todos.splice(todoId, 1);
+                this.getTodo()
             })
             .catch((error) => {
                 console.log(error)
