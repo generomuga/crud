@@ -70,8 +70,7 @@ export default {
               
           },
           todos: [],
-          errorMsg: '',
-          savingSuccessful: false
+          errorMsg: ''
       }
   },
   methods: {
@@ -80,7 +79,6 @@ export default {
             .post('http://localhost:3000/todos', this.formData)
             .then((response) => {
                 console.log(response)
-                this.savingSuccessful = true
                 this.getTodo()
             })
             .catch(error => console.log(error))
@@ -102,7 +100,6 @@ export default {
             .delete('http://localhost:3000/todos/'+todoId)
             .then((response) => {
                 console.log(response)
-                // this.todos = response.data
                 this.todos.splice(todoId, 1);
                 this.getTodo()
             })
