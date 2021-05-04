@@ -23,8 +23,6 @@
                 </div>
             </div>
 
-            
-
             <div>
                 <button>Yeah! just add a new task</button>
             </div>
