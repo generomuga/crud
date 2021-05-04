@@ -3,7 +3,9 @@
 
         <form @submit.prevent="addTodo">
             
-            <h1>{{ msg }}</h1>
+            <h1>{{ app_title }}</h1>
+
+            <div v-if="errorMsg">{{errorMsg}}</div>
             
             <div>
                 <div>
@@ -22,6 +24,8 @@
                     <textarea id="comment" name="comment" rows="4" cols="22" v-model="formData.comment"/>
                 </div>
             </div>
+
+            
 
             <div>
                 <button>Yeah! just add a new task</button>
@@ -72,7 +76,7 @@ import axios from 'axios'
 export default {
   name: 'TestComponent',
   props: {
-    msg: String,
+    app_title: String,
     task_header: String,
     comment_header: String
   },
@@ -93,10 +97,15 @@ export default {
   },
   methods: {
       addTodo() {
+        if (this.formData.task === '' || this.formData.comment === ''){
+            this.errorMsg = '*Task and comment are required fields'
+            return
+        }
         axios
             .post('http://localhost:3000/todos', this.formData)
             .then((response) => {
                 console.log(response)
+                this.errorMsg = ''
                 this.getTodo()
             })
             .catch(error => console.log(error))
