@@ -2,6 +2,9 @@
 
 Just a simple CRUD Todo application developed using Express for the API, PostgreSQL 13 for the database and Vue for the app. This app has been fully containerized. 
 
+### Prerequisite
+Just install the docker engine (https://docs.docker.com/engine/install/) on your local machine.
+
 ### Run the whole infrastructure by just simply running this code
 ```
 docker-compose up -d
