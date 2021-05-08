@@ -53,3 +53,6 @@ docker-compose down
   DB_USERNAME=postgres
   DB_PASSWORD=postgres
 ```
+
+### Challenge for you
+Implement PUT call on Vue app and make a PR :) Let's do this for fun 
